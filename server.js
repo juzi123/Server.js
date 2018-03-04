@@ -23,19 +23,19 @@ var server = http.createServer(function(request, response){
 
 
   console.log('得到 HTTP 路径\n' + path)
-  if(path == '/'){
-    response.setHeader('Content-Type', 'text/html; charset=utf-8')
-    response.write('<!DOCTYPE html><html><head>' + 
-    '<link rel="stylesheet" href="/style"></head>' + 
-    '<body><h1>你好</h1><script src="/script"></script></body></html>')
+  if(path == '/main.js'){
+    response.setHeader('Content-Type', 'text/javascript; charset=utf-8')
+    response.write('alert("这是JS执行的")')
     response.end()
   }else if(path == '/style.css'){
     response.setHeader('Content-Type', 'text/css; charset=utf-8')
     response.write('body{background-color: #ddd;}h1{color: blue}')
     response.end()
-  }else if(path == 'main.js'){
-    response.setHeader('Content-Type', 'text/javascript; charset=utf-8')
-    response.write('alert("这是JS执行的")')
+  }else if(path == '/'){
+    response.setHeader('Content-Type', 'text/html; charset=utf-8')
+    response.write('<!DOCTYPE html><html><head>' + 
+    '<link rel="stylesheet" href="/style.css"></head>' + 
+    '<body><h1>你好</h1><script src="/main.js"></script></body></html>')
     response.end()
   }else{
       response.statusCode = 404
